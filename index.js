@@ -494,7 +494,7 @@ class HtmlWebpackPlugin {
 
       attributes: {
         type: 'text/javascript',
-        src: injectStaticResource(path)
+        src: this.injectStaticResource(path)
       }
     }));
     // Make tags self-closing in case of xhtml
@@ -505,7 +505,7 @@ class HtmlWebpackPlugin {
       selfClosingTag: selfClosingTag,
 
       attributes: {
-        href: injectStaticResource(stylePath),
+        href: this.injectStaticResource(stylePath),
         rel: 'stylesheet'
       }
     }));
