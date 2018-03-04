@@ -487,7 +487,7 @@ class HtmlWebpackPlugin {
 
       attributes: {
         type: 'text/javascript',
-        src: `${staticResource ? 'URLFOR({!$Resource.' + staticResource : ''}, '${scriptPath}'${staticResource ? '}' : ''}`
+        src: `${this.options.staticResource ? 'URLFOR({!$Resource.' + this.options.staticResource : ''}, '${scriptPath}'${this.options.staticResource ? '}' : ''}`
       }
     }));
     // Make tags self-closing in case of xhtml
