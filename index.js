@@ -30,7 +30,8 @@ class HtmlWebpackPlugin {
       chunks: 'all',
       excludeChunks: [],
       title: 'Webpack App',
-      xhtml: false
+      xhtml: true,
+      staticResource: false
     }, options);
   }
 
@@ -486,7 +487,7 @@ class HtmlWebpackPlugin {
 
       attributes: {
         type: 'text/javascript',
-        src: scriptPath
+        src: `${staticResource ? 'URLFOR({!$Resource.' + staticResource : ''}, '${scriptPath}'${staticResource ? '}' : ''}`
       }
     }));
     // Make tags self-closing in case of xhtml
