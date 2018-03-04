@@ -476,6 +476,13 @@ class HtmlWebpackPlugin {
     return assets;
   }
 
+  injectStaticResource (path) {
+    if (this.options.staticResource) {
+      `{!URLFOR($Resource.'${this.options.staticResource}, '${scriptPath}'}}`
+    }
+    else return path
+  }
+
   /**
    * Injects the assets into the given html string
    */
@@ -487,7 +494,7 @@ class HtmlWebpackPlugin {
 
       attributes: {
         type: 'text/javascript',
-        src: `${this.options.staticResource ? 'URLFOR({!$Resource.' + this.options.staticResource : ''}, '${scriptPath}'${this.options.staticResource ? '}' : ''}`
+        src: injectStaticResource(path)
       }
     }));
     // Make tags self-closing in case of xhtml
@@ -498,7 +505,7 @@ class HtmlWebpackPlugin {
       selfClosingTag: selfClosingTag,
 
       attributes: {
-        href: stylePath,
+        href: injectStaticResource(stylePath),
         rel: 'stylesheet'
       }
     }));
