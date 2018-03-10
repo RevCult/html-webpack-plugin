@@ -476,9 +476,9 @@ class HtmlWebpackPlugin {
     return assets;
   }
 
-  injectStaticResource (path) {
+  injectStaticResource (thePath) {
     if (this.options.staticResource) {
-      `{!URLFOR($Resource.'${this.options.staticResource}, '${scriptPath}'}}`
+      return `{!URLFOR($Resource.${this.options.staticResource}, 'dist${thePath}')}`
     }
     else return path
   }
@@ -494,7 +494,7 @@ class HtmlWebpackPlugin {
 
       attributes: {
         type: 'text/javascript',
-        src: this.injectStaticResource(path)
+        src: this.injectStaticResource(scriptPath)
       }
     }));
     // Make tags self-closing in case of xhtml
